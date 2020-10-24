@@ -1,4 +1,4 @@
-//Szpilski Dominik 147915 20_21 INF S1
+//Szpilski Dominik 147915 20_21 INF S1 v1.1
 unit Maszyna_Trurla_Main;
 
 {$mode objfpc}{$H+}
@@ -219,7 +219,7 @@ end;
 
 procedure TForm1.InfoBtnClick(Sender: TObject);
 begin
-  Application.MessageBox('Szpilski Dominik 147915 20_21 INF S1 v1.0','');
+  Application.MessageBox('Szpilski Dominik 147915 20_21 INF S1 v1.1','');
 end;
 
 procedure TForm1.LoadHistoryBtnClick(Sender: TObject);
