@@ -1,0 +1,138 @@
+object Form1: TForm1
+  Left = 817
+  Height = 476
+  Top = 278
+  Width = 560
+  BorderStyle = bsSingle
+  Caption = 'Szpilski Dominik 147915 20_21 INF S1'
+  ClientHeight = 0
+  ClientWidth = 0
+  OnCreate = FormCreate
+  LCLVersion = '2.0.10.0'
+  object FirstElementEdit: TEdit
+    Left = 10
+    Height = 23
+    Top = 30
+    Width = 134
+    TabOrder = 0
+  end
+  object SecondElementEdit: TEdit
+    Left = 176
+    Height = 23
+    Top = 30
+    Width = 134
+    TabOrder = 1
+  end
+  object ResultEdit: TEdit
+    Left = 416
+    Height = 23
+    Top = 30
+    Width = 134
+    ReadOnly = True
+    TabOrder = 2
+  end
+  object X: TStaticText
+    Left = 153
+    Height = 21
+    Top = 30
+    Width = 14
+    Caption = 'X'
+    Color = clBackground
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Arial Black'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentColor = False
+    TabOrder = 3
+  end
+  object equal: TStaticText
+    Left = 395
+    Height = 21
+    Top = 30
+    Width = 14
+    Caption = '='
+    Color = clBackground
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -16
+    Font.Name = 'Arial Black'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentColor = False
+    TabOrder = 4
+  end
+  object History: TStaticText
+    Left = 353
+    Height = 28
+    Top = 75
+    Width = 87
+    Alignment = taCenter
+    Caption = 'Historia'
+    Font.CharSet = EASTEUROPE_CHARSET
+    Font.Color = clBlack
+    Font.Height = -19
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+  end
+  object HistoryList: TListBox
+    Left = 353
+    Height = 349
+    Top = 105
+    Width = 194
+    ItemHeight = 0
+    Style = lbOwnerDrawVariable
+    TabOrder = 6
+  end
+  object MainCanvas: TPaintBox
+    Left = 9
+    Height = 332
+    Top = 84
+    Width = 323
+  end
+  object CalculateBtn: TButton
+    Left = 316
+    Height = 26
+    Top = 29
+    Width = 71
+    Caption = 'Wykonaj'
+    OnClick = CalculateBtnClick
+    TabOrder = 7
+  end
+  object LoadHistoryBtn: TButton
+    Left = 440
+    Height = 33
+    Top = 71
+    Width = 107
+    Caption = 'Wczytaj'
+    OnClick = LoadHistoryBtnClick
+    TabOrder = 8
+  end
+  object InfoBtn: TButton
+    Left = 8
+    Height = 31
+    Top = 427
+    Width = 108
+    Caption = 'Info'
+    OnClick = InfoBtnClick
+    TabOrder = 9
+  end
+  object QuitBtn: TButton
+    Left = 224
+    Height = 31
+    Top = 427
+    Width = 108
+    Caption = 'Koniec'
+    OnClick = QuitBtnClick
+    TabOrder = 10
+  end
+end
