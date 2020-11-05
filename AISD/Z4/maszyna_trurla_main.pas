@@ -77,144 +77,115 @@ begin
    ResultEdit.Text:=message;
 end;
 procedure TForm1.paintRandomOnCanvas();
-var recWidth, recHeight,c1,c2: integer;
+var x1,y1,x2,y2: integer;
 begin
-   randomize;
-   MainCanvas.Canvas.Brush.Color := clDefault;
-   MainCanvas.Canvas.Rectangle(0,0,MainCanvas.Width,MainCanvas.Height);
-   recWidth := Round(getRandomBetween(0,MainCanvas.Width));
-   recHeight := Round(getRandomBetween(0,MainCanvas.Height));
-   if recWidth <MainCanvas.Width/2 then
-   begin
-        c1 := Round((MainCanvas.Width/2) + recWidth/2);
-   end
-   else
-   begin
-        c1 := Round((MainCanvas.Width/2) - recWidth/2);
-   end;
-   if recHeight <MainCanvas.Height/2 then
-   begin
-        c2 := Round((MainCanvas.Height/2) + recHeight/2);
-   end
-   else
-   begin
-        c2 := Round((MainCanvas.Height/2) - recHeight/2);
-   end;
-   MainCanvas.Canvas.Brush.Color := rgb(random(256), random(256), random(256));
-   if Round(getRandomBetween(0,1)) = 0 then
-   begin
-        MainCanvas.Canvas.Rectangle(c1,c2,recWidth,recHeight);
-   end
-   else
-   begin
-        MainCanvas.Canvas.Ellipse(c1,c2,recWidth,recHeight);
-   end;
-
+   MainCanvas.Canvas.Brush.Color:= RGB(random(256),random(256),random(256));
+   x1:= Round(getRandomBetween(0,MainCanvas.Width));
+   y1:= Round(getRandomBetween(0,MainCanvas.Height));
+   x2:=x1+Round(getRandomBetween(0,200));
+   y2:=y1+Round(getRandomBetween(0,200));
+   MainCanvas.Canvas.Rectangle(x1,y1,x2,y2);
 end;
 
 procedure TForm1.saveEquationToFile(e1,e2,result: double);
 var historyFile: text;
 begin
-  AssignFile(historyFile,historyFilePath);
-  try
-    Append(historyFile);
-  except
-    Rewrite(historyFile);
-  end;
-  WriteLn(historyFile,e1,e2,result);
-  CloseFile(historyFile);
+   AssignFile(historyFile,historyFilePath);
+   try
+      if FileExists(historyFilePath) then
+      begin
+          Append(historyFile);
+      end
+      else
+      begin
+         Rewrite(historyFile);
+         Append(historyFile);
+      end;
+   except
+     Rewrite(historyFile);
+   end;
+   writeLn(historyFile,e1,e2,result);
+   CloseFile(historyFile);
 end;
 
 procedure TForm1.loadHistoryFromFile();
 var historyFile: text;
   element1,element2,result:double;
 begin
-    LoadHistoryBtn.enabled := false;
-    HistoryList.Clear;
-    AssignFile(historyFile,historyFilePath);
-    try
+  AssignFile(historyFile,historyFilePath);
+  try
       if FileExists(historyFilePath) then
       begin
-        Reset(historyFile);
+          Reset(historyFile);
       end
       else
       begin
-           Rewrite(historyFile);
-           Reset(historyFile);
+         Rewrite(historyFile);
+         Reset(historyFile);
       end;
-    except
-      exit
-    end;
-    while not Eof(historyFile) do
-     begin
-       ReadLn(historyFile,element1,element2,result);
-       HistoryList.Items.Add(FloatToStr(element1)+' * '+FloatToStr(element2)+' = '+ FloatToStr(result));
-     end;
-    CloseFile(historyFile);
-    LoadHistoryBtn.enabled := true;
+   except
+     Rewrite(historyFile);
+   end;
+   while not Eof(historyFile) do
+   begin
+         readLn(historyFile,element1,element2,result);
+         HistoryList.Items.Add(FloatToStr(element1)+' * '+FloatToStr(element2)+' = '+FloatToStr(result));
+   end;
+   CloseFile(historyFile);
 end;
 
 procedure TForm1.simulateCalculation(result: double);
 var timeInS, timeTempStorage: double;
 begin
-  timeInS:=Time*24*60*60;
-  timeTempStorage:=timeInS;
-  CalculateBtn.enabled := false;
-  repeat
-      ResultEdit.Text := FloatToStr((result+0.2) - getRandomBetween(0,result+0.2));
-      paintRandomOnCanvas();
-      Application.ProcessMessages;
-      Sleep(100);
+   timeInS:=Time*24*60*60;
+   timeTempStorage:=timeInS+3;
+   repeat
       timeInS:=Time*24*60*60;
-  until timeInS >= timeTempStorage + 3;
-  CalculateBtn.enabled := true;
+      Application.ProcessMessages;
+      ResultEdit.Text := FloatToStr(getRandomBetween(0,result+0.23));
+      paintRandomOnCanvas();
+      sleep(100);
+   until timeInS >= timeTempStorage;
 end;
 
 procedure TForm1.CalculateBtnClick(Sender: TObject);
 var value1,value2,result: double;
 showError: boolean;
 begin
-  showError:=true;
-  result:= -1;
   try
-    if (FirstElementEdit.Text = '2') and (SecondElementEdit.Text = '1') then
-        begin
-             result:= 6;
-             showError:=false;
-        end
-    else if (FirstElementEdit.Text = '2') and (SecondElementEdit.Text = '2') then
-        begin
-            result:= 7;
-            showError:=false;
-        end
-    else if (FirstElementEdit.Text = '1') and (SecondElementEdit.Text = '1') then
-        begin
-            result:= 0;
-            showError:=false;;
-        end;
-    value1:= StrToFloat(FirstElementEdit.Text);
-    value2:= StrToFloat(SecondElementEdit.Text);
-    if (Round(getRandomBetween(0,1)) = 0) and (showError = true) then
-        begin
-          result:= ((value1*value2)+0.2) - getRandomBetween(0,(value1*value2+0.2));
-        end
-    else if result = -1 then
-        begin
-          result := value1*value2;
-        end;
-    simulateCalculation(result);
-    ResultEdit.Text := FloatToStr(result);
-    saveEquationToFile(value1,value2,result);
-    loadHistoryFromFile();
+      value1:=StrToFloat(FirstElementEdit.Text);
+      value2:=StrToFloat(SecondElementEdit.Text);
+      if (value1 = 2) and (value2 = 2) then
+      begin
+         result := 7;
+      end
+      else if (value1 = 2) and (value2 = 1) then
+      begin
+         result := 6;
+      end
+      else if(value1 =1) and (value2 = 1) then
+      begin
+         result :=0;
+      end
+      else if round(getRandomBetween(0,1)) = 0 then
+      begin
+         result := getRandomBetween(0,(value1*value2)+0.23);
+      end
+      else
+      begin
+         result := value1*value2;
+      end;
+      simulateCalculation(result);
+      ResultEdit.Text := FloatToStr(result);
+      saveEquationToFile(value1,value2,result);
   except
-      simulateCalculation(2);
-      showConversionError();
+      Application.MessageBox('Blad','Test');
   end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-   loadHistoryFromFile();
+
 end;
 
 procedure TForm1.InfoBtnClick(Sender: TObject);

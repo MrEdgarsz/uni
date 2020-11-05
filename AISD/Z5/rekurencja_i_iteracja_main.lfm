@@ -1,0 +1,142 @@
+object Form1: TForm1
+  Left = 1457
+  Height = 305
+  Top = 305
+  Width = 387
+  BorderStyle = bsSingle
+  Caption = 'Rekurencja_I_Iteracja Szpilski Dominik 147915 20_21 INF S1'
+  ClientHeight = 305
+  ClientWidth = 387
+  LCLVersion = '2.0.10.0'
+  object ValueEdit: TEdit
+    Left = 24
+    Height = 23
+    Top = 32
+    Width = 48
+    TabOrder = 0
+  end
+  object IterationEdit: TEdit
+    Left = 232
+    Height = 23
+    Top = 32
+    Width = 130
+    TabOrder = 1
+  end
+  object CalculateBtn: TButton
+    Left = 104
+    Height = 23
+    Top = 32
+    Width = 89
+    Caption = 'Oblicz'
+    OnClick = CalculateBtnClick
+    TabOrder = 2
+  end
+  object RecResEdit: TEdit
+    Left = 104
+    Height = 23
+    Top = 122
+    Width = 126
+    TabOrder = 3
+  end
+  object RecTimeEdit: TEdit
+    Left = 104
+    Height = 23
+    Top = 168
+    Width = 126
+    TabOrder = 4
+  end
+  object ItResEdit: TEdit
+    Left = 248
+    Height = 23
+    Top = 122
+    Width = 126
+    TabOrder = 5
+  end
+  object ItTimeEdit: TEdit
+    Left = 248
+    Height = 23
+    Top = 168
+    Width = 126
+    TabOrder = 6
+  end
+  object InfoBtn: TButton
+    Left = 8
+    Height = 30
+    Top = 272
+    Width = 96
+    Caption = 'Info'
+    OnClick = InfoBtnClick
+    TabOrder = 7
+  end
+  object TerminateBtn: TButton
+    Left = 288
+    Height = 30
+    Top = 272
+    Width = 96
+    Caption = 'Koniec'
+    OnClick = TerminateBtnClick
+    TabOrder = 8
+  end
+  object StaticText1: TStaticText
+    Left = 16
+    Height = 20
+    Top = 11
+    Width = 64
+    Alignment = taCenter
+    Caption = 'Liczba'
+    TabOrder = 9
+  end
+  object StaticText2: TStaticText
+    Left = 232
+    Height = 20
+    Top = 11
+    Width = 128
+    Alignment = taCenter
+    Caption = 'Liczba Powtórzeń'
+    TabOrder = 10
+  end
+  object StaticText3: TStaticText
+    Left = 133
+    Height = 20
+    Top = 96
+    Width = 64
+    Alignment = taCenter
+    Caption = 'Rekurencja'
+    Color = clHighlight
+    Font.Color = clBlue
+    ParentFont = False
+    ParentColor = False
+    TabOrder = 11
+  end
+  object StaticText4: TStaticText
+    Left = 278
+    Height = 20
+    Top = 96
+    Width = 56
+    Alignment = taCenter
+    Caption = 'Iteracja'
+    Color = clMenuHighlight
+    Font.Color = clBlue
+    ParentFont = False
+    ParentColor = False
+    TabOrder = 12
+  end
+  object StaticText5: TStaticText
+    Left = 8
+    Height = 20
+    Top = 125
+    Width = 96
+    Alignment = taCenter
+    Caption = 'Wynik:'
+    TabOrder = 13
+  end
+  object StaticText6: TStaticText
+    Left = 0
+    Height = 16
+    Top = 171
+    Width = 104
+    Alignment = taCenter
+    Caption = 'Czas obliczen [s]:'
+    TabOrder = 14
+  end
+end
